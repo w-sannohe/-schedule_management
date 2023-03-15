@@ -1,2 +1,2 @@
-# -schedule_management
+# schedule_management
 docker+laravel+php+nginx
