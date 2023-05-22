@@ -26,13 +26,14 @@ services:
     image: mysql:8.0
     environment:
       MYSQL_ROOT_PASSWORD: root
-      MYSQL_DATABASE: php_project
+      MYSQL_DATABASE: schedule_management
       MYSQL_USER: phper
       MYSQL_PASSWORD: phper_p
     # command:
     #   mysqld --default-authentication-plugin=mysql_native_password
     volumes:
       - ./docker/mysql/data:/var/lib/mysql
+      - ./docker/mysql/sql:/docker-entrypoint-initdb.d
       - ./docker/mysql/my.cnf:/etc/mysql/conf.d/my.cnf
       - ./logs:/var/log/mysql
     ports:

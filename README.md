@@ -1,2 +1,2 @@
 # schedule_management
-docker+laravel+php+nginx
+docker+laravel6系+php+nginx
