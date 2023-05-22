@@ -68,7 +68,7 @@ class ScheduleRepository implements ScheduleRepositoryInterface
      */
     public function getTimetreeCalendersInfo(array $userTimetreeInfo) : ?array
     {
-        $getCalenderUrl = "https://timetreeapis.com/calendars/".decrypt($userTimetreeInfo['calender_id'])."=labels,members";
+        $getCalenderUrl = "https://timetreeapis.com/calendars/".decrypt($userTimetreeInfo['calender_id'])."?include=labels,members";
         $headers = [
             "Accept: application/vnd.timetree.v1+json",
             "Authorization: Bearer ".decrypt($userTimetreeInfo['calender_token'])
