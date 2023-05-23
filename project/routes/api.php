@@ -20,4 +20,6 @@ Route::group(['middleware' => ['api']], function () {
     Route::get('timetree-calenders', 'Api\TimetreeController@getCalenders');
     Route::get('timetree-schedules', 'Api\TimetreeController@getSchedules');
     Route::get('timetree-add-recommend', 'Api\TimetreeController@addRecommend');
+    Route::get('timetree-add-geo-recommend', 'Api\TimetreeController@addRecommendGeo');
+    Route::get('timetree-add-description-recommend', 'Api\TimetreeController@addRecommendDescription');
 });

@@ -11,4 +11,7 @@ interface ScheduleServiceInterface
 
     public function addTimetreeEventRecommendComment(): array;
 
+    public function addTimetreeEventGeoRecommendComment(): array;
+
+    public function addTimetreeEventDescriptionRecommendComment(): array;
 }

@@ -15,6 +15,6 @@ interface ScheduleRepositoryInterface
 
     public function getTimetreeEventInfo(string $eventId, array $userTimetreeInfo) : ?array;
 
-    public function addCommentHitosaraEvent(array $userTimetreeInfo, array $scheduleInfo, array $hitosaraEvent) : array;
+    public function addCommentHitosaraEvent(array $userTimetreeInfo, array $scheduleInfo, array $hitosaraEvent, array $addUrlList = []) : array;
 
 }

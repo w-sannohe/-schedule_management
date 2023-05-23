@@ -156,15 +156,27 @@ class ScheduleRepository implements ScheduleRepositoryInterface
      *
      * @param array $userTimetreeInfo
      * @param array $eventId 予定ID
-     * @param array $userTimetreeInfo
+     * @param array $hitosaraEvent
+     * @param array $addUrlList 追加するURLのリスト
      * @return array
      */
-    public function addCommentHitosaraEvent(array $userTimetreeInfo, array $scheduleInfo, array $hitosaraEvent) : array
+    public function addCommentHitosaraEvent(array $userTimetreeInfo, array $scheduleInfo, array $hitosaraEvent, array $addUrlList = []) : array
     {
+        $locat = '';
+        if(!empty($scheduleInfo["attributes"]['location'])) {
+            $locat = "【 ".$scheduleInfo["attributes"]["location"]." 】付近で\n";
+        } else if (!empty($addUrlList['prefecture_url']) || !empty($addUrlList['main_url'])) {
+            $timetreeDescription = preg_split('/\s/', $scheduleInfo["attributes"]["description"]);
+            $locat = "【 ".$timetreeDescription[1]." 】付近の【 ".$timetreeDescription[2]." 】で\n";
+        }
+
+        $addUrl = '';
+        if(!empty($addUrlList)) $addUrl = implode("/", $addUrlList)."/";
+
         $comment = [
             "data" => [
                 "attributes" => [
-                    "content" => "【ヒトサラ】こんにちはぁ〜\n\n".$hitosaraEvent["event_name"]."におすすめのお店を\n↓ここから予約できます\n\n-- >> Check!! & Reserve!! << ---\n--------------------------------\n\n".$hitosaraEvent["event_url"]."\n\n--------------------------------\n--------------------------------"
+                    "content" => "+*●○ ヒトサラ ○●*+\nこんにちはぁ〜٩(ˊᗜˋ*)وｨ\n\n".$locat."【 ".$hitosaraEvent["event_name"]." 】におすすめのお店を\n↓ここから予約できます\n\n-- >> Check!! & Reserve!! << ---\n--------------------------------\n\n".$hitosaraEvent["event_url"].$addUrl."\n\n--------------------------------\n--------------------------------"
                 ]
             ]
         ];
@@ -188,9 +200,9 @@ class ScheduleRepository implements ScheduleRepositoryInterface
 
         $calenderInfo = json_decode($json_response, true);
 
-        Log::debug(print_r($calenderInfo, true));
+        // Log::debug(print_r($calenderInfo, true));
 
-        return $calenderInfo;
+        return empty($calenderInfo) && empty($calenderInfo['data']) ? [] : $calenderInfo;
     }
 
 }

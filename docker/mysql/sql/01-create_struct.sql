@@ -59,3 +59,30 @@ CREATE TABLE `resist_timetree_event` (
   KEY `user_user_id` (`user_id`),
   KEY `event_event_id` (`hitosara_event_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COMMENT='登録済みのイベント情報';
+
+CREATE TABLE `geo` (
+  `geo_id` int(11) AUTO_INCREMENT NOT NULL COMMENT 'GEO ID',
+  `prefecture_id` varchar(128) DEFAULT NULL COMMENT '県id',
+  `prefecture_name` varchar(128) DEFAULT NULL COMMENT '県名',
+  `prefecture_url` varchar(128) DEFAULT NULL COMMENT '県URL',
+  `city_id` varchar(128) DEFAULT NULL COMMENT '市id',
+  `city_name` varchar(128) DEFAULT NULL COMMENT '市名',
+  `city_url` varchar(128) DEFAULT NULL COMMENT '市URL', 
+  `create_id` varchar(15) DEFAULT NULL COMMENT '作成者ID',
+  `create_date` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT '作成日時',
+  `update_id` varchar(15) DEFAULT NULL COMMENT '更新者ID',
+  `update_date` timestamp NULL DEFAULT NULL ON UPDATE CURRENT_TIMESTAMP COMMENT '更新日時',
+  PRIMARY KEY (`geo_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COMMENT='GEO情報';
+
+CREATE TABLE `main_type` (
+  `main_type_id` int(11) AUTO_INCREMENT NOT NULL COMMENT 'メインID',
+  `main_id` varchar(128) DEFAULT NULL COMMENT 'メインid',
+  `main_name` varchar(128) DEFAULT NULL COMMENT 'メイン名',
+  `main_url` varchar(128) DEFAULT NULL COMMENT 'メインURL',
+  `create_id` varchar(15) DEFAULT NULL COMMENT '作成者ID',
+  `create_date` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT '作成日時',
+  `update_id` varchar(15) DEFAULT NULL COMMENT '更新者ID',
+  `update_date` timestamp NULL DEFAULT NULL ON UPDATE CURRENT_TIMESTAMP COMMENT '更新日時',
+  PRIMARY KEY (`main_type_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COMMENT='メイン情報';

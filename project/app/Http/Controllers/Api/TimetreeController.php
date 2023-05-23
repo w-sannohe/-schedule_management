@@ -46,7 +46,7 @@ class TimetreeController extends Controller
     }
 
     /**
-     * 予定取得
+     * おすすめコメント追加
      *
      * @param Request $request
      * @return void
@@ -54,6 +54,32 @@ class TimetreeController extends Controller
     public function addRecommend(Request $request) 
     {
         $recommendComment = $this->service->addTimetreeEventRecommendComment();
+
+        return response()->json($recommendComment);
+    }
+
+    /**
+     * おすすめコメント(GEO情報とスケジュールの登録)追加
+     *
+     * @param Request $request
+     * @return void
+     */
+    public function addRecommendGeo(Request $request) 
+    {
+        $recommendComment = $this->service->addTimetreeEventGeoRecommendComment();
+
+        return response()->json($recommendComment);
+    }
+
+    /**
+     * おすすめコメント(description情報とスケジュールの登録)追加
+     *
+     * @param Request $request
+     * @return void
+     */
+    public function addRecommendDescription(Request $request) 
+    {
+        $recommendComment = $this->service->addTimetreeEventDescriptionRecommendComment();
 
         return response()->json($recommendComment);
     }
